@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Stampa i tuoi dati</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <style>
       * {
         margin:0;
@@ -91,10 +93,18 @@
         var studente= {
           nome:'',
           cognome:'',
-          eta:'',
+          eta:Math.floor(Math.random()*16),
         }
+        console.log(studente)
         // - Creare un array di oggetti di studenti. Ciclare su tutti gli
         // studenti e stampare per ognuno nome e cognome
+        
+        var arrfor=[];
+        for(i=0;i<10;i++){
+          arrfor[i]=studente
+        }
+        console.log(arrfor)
+
         // - Dare la possibilità all'utente attraverso 3 prompt di
         // aggiungere un nuovo oggetto studente inserendo
         // nell'ordine: nome, cognome e età.
