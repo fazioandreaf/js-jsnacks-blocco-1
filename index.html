@@ -24,6 +24,7 @@
   <body>
     <div class="row">
       <h1 id="mainTitle"></h1>
+      <button id="btn">Nuovo studente</button>
     </div>
     <div id="dRosso" style="background-color: red;"></div>
     <div id="dVerde" style="background-color: green;"></div>
@@ -90,34 +91,40 @@
         //24-03  - Creare un oggetto che descriva uno studente con le
         // seguenti proprietà: nome, cognome e età. Stampare a
         // schermo attraverso il for in tutte le proprietà.
-        var studente= {
-          nome:'',
-          cognome:'',
-          eta:Math.floor(Math.random()*16),
-        }
-        console.log(studente)
         // - Creare un array di oggetti di studenti. Ciclare su tutti gli
         // studenti e stampare per ognuno nome e cognome
-        var arrfor=[];
-        for(i=0;i<10;i++){
-          arrfor[i]=studente
-        }
-        console.log(arrfor)
         // - Dare la possibilità all'utente attraverso 3 prompt di
         // aggiungere un nuovo oggetto studente inserendo
         // nell'ordine: nome, cognome e età.
-        var nomePLUS=prompt('Scrivi il nuovo nome')
-        var cognomePLUS=prompt('Scrivi il nuovo cognome')
-        var etaPLUS=prompt('Scrivi la nuova eta')
-        studente['nome']=nomePLUS
-        studente['cognome']=cognomePLUS
-        studente['eta']=etaPLUS
-        console.log(studente)
-
-        arrfor.push(studente);
+        var nomeARR=['Andrea','Lorenzo','Alessandro','Tiziana','Gioele','Nunzio','Jacopo','Raul', 'Mats','Vlad']
+        var cognomeARR=['Fazio','Antonelli','Venti','Tizzy','Armentiero','Chiefa','Zanardo','Masnada', 'Battistini','vladDD']
+        var arrfor=[];
+        for(i=0;i<nomeARR.length;i++){
+          var studente={
+            nome:nomeARR[Math.floor(Math.random()*nomeARR.length)],
+            cognome:cognomeARR[Math.floor(Math.random()*nomeARR.length)],
+            eta:Math.floor((Math.random()*16)+1),
+          }
+          arrfor[i]=studente
+        }
         console.log(arrfor)
-
-
+        console.log(studente)
+        function addStudent(){
+          var nomePLUS=prompt('Scrivi il nuovo nome')
+          var cognomePLUS=prompt('Scrivi il nuovo cognome')
+          var etaPLUS=prompt('Scrivi la nuova eta')
+          var studente={};
+          studente['nome']=nomePLUS
+          studente['cognome']=cognomePLUS
+          studente['eta']=parseInt(etaPLUS)
+          console.log(studente)
+          arrfor.push(studente);
+          console.log(arrfor)
+        }
+        function init(){
+          $('#btn').click(addStudent)
+        }
+        $(document).ready(init)
     </script>
   </body>
 </html>
