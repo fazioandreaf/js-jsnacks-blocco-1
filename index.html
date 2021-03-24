@@ -98,16 +98,25 @@
         console.log(studente)
         // - Creare un array di oggetti di studenti. Ciclare su tutti gli
         // studenti e stampare per ognuno nome e cognome
-        
         var arrfor=[];
         for(i=0;i<10;i++){
           arrfor[i]=studente
         }
         console.log(arrfor)
-
         // - Dare la possibilità all'utente attraverso 3 prompt di
         // aggiungere un nuovo oggetto studente inserendo
         // nell'ordine: nome, cognome e età.
+        var nomePLUS=prompt('Scrivi il nuovo nome')
+        var cognomePLUS=prompt('Scrivi il nuovo cognome')
+        var etaPLUS=prompt('Scrivi la nuova eta')
+        studente['nome']=nomePLUS
+        studente['cognome']=cognomePLUS
+        studente['eta']=etaPLUS
+        console.log(studente)
+
+        arrfor.push(studente);
+        console.log(arrfor)
+
 
     </script>
   </body>
