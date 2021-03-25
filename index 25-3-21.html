@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title>Lc 24-3</title>
+        <style>
+          * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              font-family: 'Lato';
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                margin: 0 auto;
+                width: 100vw;
+                height: 100vh;
+                background-color: purple;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 id="title">Hello world</h1>
+            <div class="boxes">
+            </div>
+            <input type="text" name="" id="text">
+        </div>
+        <script>
+        //   Crea 10 oggetti che rappresentano una zucchina.
+        // Dividi in due array separati le zucchine che misurano
+        // meno o più di 15cm.
+        // Infine stampa separatamente quanto pesano i due gruppi
+        // di zucchine
+        var misura=[];
+        var peso=[];
+        var arrTOT=[];
+        
+        for(i=0;i<10;i++){
+          var misuraFOR=((Math.random()*30).toFixed(2));
+          var pesoFOR=((Math.random()*30).toFixed(2));
+          misura.push(misuraFOR+' cm')
+          peso.push(pesoFOR+ ' Kg')
+        }
+        for(i=0;i<misura.length;i++){
+          var zucchine={
+            misura:misura[Math.floor(Math.random()*misura.length)],
+            peso:peso[Math.floor(Math.random()*misura.length)],
+          }
+          arrTOT[i]= zucchine;
+        }
+        
+        var long=[];
+        var small=[];
+        var longPESO=0;
+        var smallPESO=0;
+        console.log(arrTOT);
+        for(i=0;i<arrTOT.length;i++){
+          var misuraLIMIT=parseInt(arrTOT[i].misura);
+          if(misuraLIMIT>15){
+            long.push(arrTOT[i]);
+            let singoloPESO=(arrTOT[i].peso)
+            longPESO =longPESO + parseInt(singoloPESO)
+          } else{
+            small.push(arrTOT[i]);
+            let singoloPESO=(arrTOT[i].peso)
+            smallPESO =smallPESO + parseInt(singoloPESO)
+          }
+        }
+
+        console.log(long,small)
+        console.log('longpeso = ' + longPESO+" Kg",'smallpeso = '+ smallPESO +" Kg")
+        // Scrivi una funzione che accetti una stringa come
+        // argomento e la ritorni girata (es. Ciao -> oaiC)
+        var str = "hello";
+        var revStr = "";
+        function reversetring(str) {
+          return str.split("").reverse().join("");
+        }
+        reversetring(str)
+        console.log(reversetring(str))
+        //Scrivi una funzione che fonda due array (aventi lo stesso numero di elementi) prendendo alternativamente gli elementi da uno e dall'altro
+        var arr1=['a','b','c']
+        var arr2= [1,2,3]
+        var arr3=[];
+        for(i=0;i<arr1.length;i++){
+          arr3.push(arr1[i],arr2[i]);
+          console.log(arr3)
+        }
+         </script>
+    </body>
+</html>
