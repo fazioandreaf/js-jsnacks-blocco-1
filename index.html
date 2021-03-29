@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Stampa i tuoi dati</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <style>
       * {
         margin:0;
@@ -19,12 +18,32 @@
       .row h1 {
         margin: 10px auto;
       }
+      .container{
+        background-color: red;
+        width: 80%;
+        margin: auto;
+      }
+      .riga {
+        display: flex;
+
+      }
+      .riga span{
+        text-align: left;
+        flex:1;
+      }
     </style>
   </head>
   <body>
     <div class="row">
       <h1 id="mainTitle"></h1>
       <button id="btn">Nuovo studente</button>
+      <div class="container">
+        <div class="riga">
+          <span class="nome">Nome</span>
+          <span class="cognome">Cognome</span>
+          <span class="eta">Età</span>
+        </div>
+      </div>
     </div>
     <div id="dRosso" style="background-color: red;"></div>
     <div id="dVerde" style="background-color: green;"></div>
@@ -96,33 +115,50 @@
         // - Dare la possibilità all'utente attraverso 3 prompt di
         // aggiungere un nuovo oggetto studente inserendo
         // nell'ordine: nome, cognome e età.
-        var nomeARR=['Andrea','Lorenzo','Alessandro','Tiziana','Gioele','Nunzio','Jacopo','Raul', 'Mats','Vlad']
-        var cognomeARR=['Fazio','Antonelli','Venti','Tizzy','Armentiero','Chiefa','Zanardo','Masnada', 'Battistini','vladDD']
-        var arrfor=[];
-        for(i=0;i<nomeARR.length;i++){
-          var studente={
-            nome:nomeARR[Math.floor(Math.random()*nomeARR.length)],
-            cognome:cognomeARR[Math.floor(Math.random()*nomeARR.length)],
-            eta:Math.floor((Math.random()*16)+1),
-          }
-          arrfor[i]=studente
+        function liTable(){
+          
         }
-        console.log(arrfor)
-        console.log(studente)
+        let contenuto=$('.riga');
+        function table() {
+
+          var nomeARR=['Andrea','Lorenzo','Alessandro','Tiziana','Gioele','Nunzio','Jacopo','Raul', 'Mats','Vlad']
+          var cognomeARR=['Fazio','Antonelli','Venti','Tizzy','Armentiero','Chiefa','Zanardo','Masnada', 'Battistini','vladDD']
+          var arrfor=[];
+          for(i=0;i<nomeARR.length;i++){
+            var studente={
+              nome:nomeARR[Math.floor(Math.random()*nomeARR.length)],
+              cognome:cognomeARR[Math.floor(Math.random()*nomeARR.length)],
+              eta:Math.floor((Math.random()*16)+18),
+            }
+            arrfor[i]=studente;
+            $('.riga:nth-child( '+i+' ) .nome').text('Nome')
+            $('.riga:nth-child( '+i+' ) .cognome').text('Cognome')
+            $('.riga:nth-child( '+i+' ) .eta').text('Età')
+            if(i>1){
+              $('.container').append(contenuto[0].outerHTML)
+              $('.riga:nth-child( '+i+' ) .nome').text(studente.nome)
+              $('.riga:nth-child( '+i+' ) .cognome').text(studente.cognome)
+              $('.riga:nth-child( '+i+' ) .eta').text(studente.eta)
+            }
+          }
+        }
         function addStudent(){
+          var studente={};
           var nomePLUS=prompt('Scrivi il nuovo nome')
           var cognomePLUS=prompt('Scrivi il nuovo cognome')
           var etaPLUS=prompt('Scrivi la nuova eta')
-          var studente={};
-          studente['nome']=nomePLUS
-          studente['cognome']=cognomePLUS
-          studente['eta']=parseInt(etaPLUS)
-          console.log(studente)
-          arrfor.push(studente);
-          console.log(arrfor)
+          studente['nome']=nomePLUS;
+          studente['cognome']=cognomePLUS;
+          studente['eta']=parseInt(etaPLUS);
+          console.log(studente);
+          $('.container').append(contenuto[0].outerHTML)
+          $('.riga:last-child .nome').text(studente.nome)
+          $('.riga:last-child .cognome').text(studente.cognome)
+          $('.riga:last-child .eta').text(studente.eta)
         }
         function init(){
           $('#btn').click(addStudent)
+          table()
         }
         $(document).ready(init)
         
