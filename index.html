@@ -45,6 +45,15 @@
         border-bottom: 2px solid black;
         padding-bottom: 10px ;
       }
+      form {
+        padding:10px;
+        display: flex;
+        flex-direction: column;
+      }
+      form>*{
+        align-self: center;
+
+      }
     </style>
   </head>
   <body>
@@ -58,6 +67,15 @@
           <span class="eta">Età</span>
         </div>
       </div>
+      <form>
+        <label for="nome">First name:</label>
+          <input type="text" id="fname" name="fname" placeholder="Nome">
+        <label for="cognome">Last name:</label>
+          <input type="text" id="lname" name="lname" placeholder="Cognome">
+        <label for="eta">Last name:</label>
+          <input type="number" id="age" name="lname" placeholder="Età">
+        <input type="submit" id="submit" value="Submit">
+      </form> 
     </div>
     <div id="dRosso" style="background-color: red;"></div>
     <div id="dVerde" style="background-color: green;"></div>
@@ -156,22 +174,39 @@
             }
           }
         }
-        function addStudent(){
-          var studente={};
-          var nomePLUS=prompt('Scrivi il nuovo nome')
-          var cognomePLUS=prompt('Scrivi il nuovo cognome')
-          var etaPLUS=prompt('Scrivi la nuova eta')
-          studente['nome']=nomePLUS;
-          studente['cognome']=cognomePLUS;
-          studente['eta']=parseInt(etaPLUS);
-          console.log(studente);
+        function rigaStudente(contenuto,studente) {
           $('.container').append(contenuto[0].outerHTML)
           $('.riga:last-child .nome').text(studente.nome)
           $('.riga:last-child .cognome').text(studente.cognome)
           $('.riga:last-child .eta').text(studente.eta)
         }
+        function addStudent(){
+          let studente={};
+          let nomePLUS=prompt('Scrivi il nuovo nome')
+          let cognomePLUS=prompt('Scrivi il nuovo cognome')
+          let etaPLUS=prompt('Scrivi la nuova eta')
+          studente['nome']=nomePLUS;
+          studente['cognome']=cognomePLUS;
+          studente['eta']=parseInt(etaPLUS);
+          console.log(studente);
+          rigaStudente(contenuto,studente)
+        }
+        function formSubmit(event) {
+          let studente={};
+          let name=$('#fname')
+          let cognome=$('#lname')
+          let eta=$('#age')
+          studente['nome']=name[0].value;
+          studente['cognome']=cognome[0].value;
+          studente['eta']=parseInt(eta[0].value);
+          rigaStudente(contenuto,studente)
+          console.log(studente,name);
+          event.preventDefault(); // ferma il refresh della pagina 
+
+        }
         function init(){
           $('#btn').click(addStudent)
+          $('#submit').click(formSubmit);
           table()
         }
         $(document).ready(init)
